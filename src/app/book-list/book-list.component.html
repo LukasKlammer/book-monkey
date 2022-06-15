@@ -1,13 +1,21 @@
 <div class="ui middle aligned divided list">
-  <a *ngFor="let book of [0, 1, 2]; index as i" class="item">
-    <img class="ui tiny image" src="https://ng-buch.de/angular-cover.jpg" alt="book-cover-image">
+  <a *ngFor="let book of books; index as i" class="item">
+    <img
+        *ngIf="book.thumbnails && book.thumbnails[0] && book.thumbnails[0].url"
+        class="ui tiny image"
+        [src]="book.thumbnails[0].url"
+        alt="book-cover-image">
     <div class="middle aligned content">
-      <h3 class="ui header">Angular</h3>
-      <span class="description">Grundlagen, fortgeschrittene Themen und Best Practises</span>
-    </div>
-    <div class="meta">
-      <span>Ferdinand Malcher, Johannes Hoppe, Danny Koppenhagen</span>
-      <span>ISBN: 9783864907791</span>
+      <h3 class="ui header">{{ book.title }}</h3>
+      <span class="description">{{ book.subtitle }}</span>
+      <div class="meta">
+        <span *ngFor="let author of book.authors; last as l">
+          {{author}}
+          <span *ngIf="!l">, </span>
+        </span>
+        <br>
+        <span>ISBN: {{ book.isbn }}</span>
+      </div>
     </div>
   </a>
 
