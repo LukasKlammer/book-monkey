@@ -5,10 +5,7 @@
     <h3 class="ui header">{{ book.title }}</h3>
     <span class="description">{{ book.subtitle }}</span>
     <div class="meta">
-      <span *ngFor="let author of book.authors; last as l">
-        {{author}}
-        <span *ngIf="!l">, </span>
-      </span>
+      <span>{{book.authors.join(', ')}}</span>
       <br>
       <span>ISBN: {{ book.isbn }}</span>
     </div>

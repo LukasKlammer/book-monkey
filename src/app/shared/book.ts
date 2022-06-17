@@ -13,3 +13,22 @@ export interface Thumbnail {
   url: string;
   title?: string;
 }
+
+// class BookFactory{
+//   isbn: string;
+//   title: string;
+//   authors: string[];
+//   published: Date;
+//   subtitle?: string;
+//   rating?: number;
+//   thumbnails?: Thumbnail[];
+//   description?: string;
+//   book: any;
+
+//   constructor(book? : Book){
+//     this.book = new BookFactory();
+
+//   }
+// }
+
+// let newBook = new BookFactory();
