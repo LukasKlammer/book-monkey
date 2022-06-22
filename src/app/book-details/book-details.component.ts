@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Book } from '../shared/book';
+import { BookStoreService } from '../shared/book-store.service';
 
 @Component({
   selector: 'bm-book-details',
@@ -7,20 +9,25 @@ import { Book } from '../shared/book';
   styleUrls: ['./book-details.component.scss']
 })
 export class BookDetailsComponent implements OnInit {
-  @Input() book?: Book;
-  @Output() showListEvent = new EventEmitter<any>();
+  book?: Book;
+  isbn:string ='';
 
-  constructor() { }
+  constructor(
+    private bookstore: BookStoreService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      let isbnFromLink = (params.get('isbn') || '' ); // Typ des Routen-Parameters ist string oder null. Methoden erwarten String, deshalb leerer String als Fallback-Wert
+      this.isbn = isbnFromLink;
+      this.book = this.bookstore.getSingle(isbnFromLink);
+      console.log(isbnFromLink);
+    });
   }
 
   getRating(num: number) {
-    return new Array (num);
-  }
-
-  showBookList() {
-    this.showListEvent.emit();
+    return new Array(num);
   }
 
 }
