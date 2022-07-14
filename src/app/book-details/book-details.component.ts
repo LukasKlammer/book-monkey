@@ -18,12 +18,16 @@ export class BookDetailsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      let isbnFromLink = (params.get('isbn') || '' ); // Typ des Routen-Parameters ist string oder null. Methoden erwarten String, deshalb leerer String als Fallback-Wert
-      this.isbn = isbnFromLink;
-      this.book = this.bookstore.getSingle(isbnFromLink);
-      console.log(isbnFromLink);
-    });
+
+    const params = this.route.snapshot.paramMap;
+    this.bookstore.getSingle(params.get('isbn') || '').subscribe(b => this.book = b);
+
+    // this.route.paramMap.subscribe(params => {
+    //   let isbnFromLink = (params.get('isbn') || '' ); // Typ des Routen-Parameters ist string oder null. Methoden erwarten String, deshalb leerer String als Fallback-Wert
+    //   this.isbn = isbnFromLink;
+    //   this.book = this.bookstore.getSingle(isbnFromLink);
+    //   console.log(isbnFromLink);
+    // });
   }
 
   getRating(num: number) {

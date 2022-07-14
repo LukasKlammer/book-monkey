@@ -25,7 +25,7 @@ export interface Thumbnail {
 //   description?: string;
 //   book: any;
 
-//   constructor(book? : Book){
+//   constructor(book? : Book)
 //     this.book = new BookFactory();
 
 //   }
