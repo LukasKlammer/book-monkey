@@ -10,11 +10,17 @@ import { BookStoreService } from '../shared/book-store.service';
 export class BookListComponent implements OnInit {
 
   books: Book[] = [];
+  areBooksinDatabase: boolean = true;
 
   constructor(private bookstore: BookStoreService) { }
 
   ngOnInit(): void {
-    this.bookstore.getAll().subscribe(res => this.books = res);
+    this.bookstore.getAll().subscribe(res => {
+      this.books = res;
+      if (this.books.length == 0) {
+        this.areBooksinDatabase = false;
+      }
+    });
 
     // this.books = this.bookstore.getAll(); alte Methode
   }
