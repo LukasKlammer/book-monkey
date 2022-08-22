@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
 
@@ -14,24 +14,24 @@ export class BookDetailsComponent implements OnInit {
 
   constructor(
     private bookstore: BookStoreService,
+    private router: Router,
     private route: ActivatedRoute
     ) { }
 
   ngOnInit(): void {
-
     const params = this.route.snapshot.paramMap;
     this.bookstore.getSingle(params.get('isbn') || '').subscribe(b => this.book = b);
-
-    // this.route.paramMap.subscribe(params => {
-    //   let isbnFromLink = (params.get('isbn') || '' ); // Typ des Routen-Parameters ist string oder null. Methoden erwarten String, deshalb leerer String als Fallback-Wert
-    //   this.isbn = isbnFromLink;
-    //   this.book = this.bookstore.getSingle(isbnFromLink);
-    //   console.log(isbnFromLink);
-    // });
   }
 
   getRating(num: number) {
     return new Array(num);
+  }
+
+  removeBook() {
+    if (confirm('Buch wirklich löschen?') && this.book) {
+      this.bookstore.remove(this.book.isbn)
+        .subscribe(res => this.router.navigate(['../'], { relativeTo: this.route}))
+    }
   }
 
 }
