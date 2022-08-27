@@ -1,15 +1,15 @@
-export interface Book {
+export interface BookRaw {
   isbn: string;
   title: string;
   authors: string[];
-  published: Date;
+  published: string;
   subtitle?: string;
   rating?: number;
-  thumbnails?: Thumbnail[];
+  thumbnails?: ThumbnailRaw[];
   description?: string;
 }
 
-export interface Thumbnail {
+export interface ThumbnailRaw {
   url: string;
   title?: string;
 }
