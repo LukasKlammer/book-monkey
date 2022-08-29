@@ -34,6 +34,17 @@ export class BookStoreService {
       );
   }
 
+  getAllSearch(searchTerm: string): Observable<Book[]> {
+    return this.http.get<BookRaw[]>(`${this.api}/books/search/${searchTerm}`)
+      .pipe(
+        retry(3),
+        map(booksRaw => // RxJS Operator
+          booksRaw.map(b => BookFactory.fromRaw(b)) // native array method map
+        ),
+        catchError(this.errorHandler)
+      );
+  }
+
   remove(isbn: string): Observable<any> {
     return this.http.delete(
       `${this.api}/book/${isbn})`,
