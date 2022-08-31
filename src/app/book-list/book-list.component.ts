@@ -17,7 +17,6 @@ export class BookListComponent implements OnInit {
   ngOnInit(): void {
     this.bookstore.getAll().subscribe(res => {
       this.books = res;
-      console.log(this.books)
       if (this.books.length == 0) {
         this.areBooksinDatabase = false;
       }
