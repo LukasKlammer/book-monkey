@@ -1,0 +1,10 @@
+<form class="ui form" #bookForm="ngForm" (ngSubmit)="submitForm()">
+
+  <label>Buchtitel</label>
+  <input type="text" name="title" [(ngModel)]="book.title" required>
+
+  <label>Untertitel</label>
+  <input type="text" name="subtitle" [(ngModel)]="book.subtitle">
+
+  <button class="ui button" type="submit" [disabled]="bookForm.invalid">Speichern</button>
+</form>

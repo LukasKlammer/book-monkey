@@ -8,6 +8,21 @@ export class BookFactory {
       published: new Date(b.published)
     }
   }
+
+  static empty(): Book {
+    return {
+      isbn: '',
+      title: '',
+      authors: [''],
+      published: new Date(),
+      subtitle: '',
+      rating: 0,
+      thumbnails: [
+        { url: '', title: ''}
+      ],
+      description: ''
+    }
+  }
 }
 
 
