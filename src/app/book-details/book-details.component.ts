@@ -22,7 +22,6 @@ export class BookDetailsComponent implements OnInit {
     const params = this.route.snapshot.paramMap;
     this.bookstore.getSingle(params.get('isbn') || '').subscribe(b => {
       this.book = b
-      console.log(this.book);
     });
   }
 

@@ -7,7 +7,7 @@
   <input type="text" name="subtitle" [(ngModel)]="book.subtitle">
 
   <label>ISBN</label>
-  <input type="text" name="isbn" [(ngModel)]="book.isbn" required minlenght="10" maxlength="13">
+  <input type="text" name="isbn" [(ngModel)]="book.isbn" required minlenght="10" maxlength="13" required>
 
   <label>Erscheinungsdatum</label>
   <input type="date" name="published" [(ngModel)]="book.published" useValueAsDate required>

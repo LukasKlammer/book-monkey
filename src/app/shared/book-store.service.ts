@@ -56,4 +56,14 @@ export class BookStoreService {
     console.error('Fehler aufgetreten');
     return throwError(error);
   }
+
+  create(book: Book): Observable<any> {
+    return this.http.post(
+      `${this.api}/book`,
+      book,
+      { responseType: 'text'}
+    ).pipe(
+      catchError(this.errorHandler)
+    )
+  }
 }
