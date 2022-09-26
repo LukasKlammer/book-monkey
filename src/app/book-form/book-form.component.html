@@ -6,5 +6,27 @@
   <label>Untertitel</label>
   <input type="text" name="subtitle" [(ngModel)]="book.subtitle">
 
+  <label>ISBN</label>
+  <input type="text" name="isbn" [(ngModel)]="book.isbn" required minlenght="10" maxlength="13">
+
+  <label>Erscheinungsdatum</label>
+  <input type="date" name="published" [(ngModel)]="book.published" useValueAsDate required>
+
+  <label>Autor</label>
+  <input type="text" name="authors" [(ngModel)]="book.authors[0]" required>
+
+  <label>Beschreibung</label>
+  <textarea name="description" [(ngModel)]="book.description"></textarea>
+
+  <label>Bild</label>
+  <div class="two fields">
+    <div class="field">
+      <input name="url" [(ngModel)]="book.thumbnails![0].url" placeholder="URL">
+    </div>
+    <div class="field">
+      <input name="url" [(ngModel)]="$any(book).thumbnails[0].title" placeholder="URL">
+    </div>
+  </div>
+
   <button class="ui button" type="submit" [disabled]="bookForm.invalid">Speichern</button>
 </form>

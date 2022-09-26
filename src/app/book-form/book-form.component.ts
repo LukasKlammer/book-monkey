@@ -17,6 +17,7 @@ export class BookFormComponent implements OnInit {
 
   public submitForm() {
     console.log(this.book);
+    console.log(typeof(this.book.published) );
   }
 
 }
