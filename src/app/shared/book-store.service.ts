@@ -12,7 +12,7 @@ export class BookStoreService {
   private api = 'https://api4.angular-buch.com/secure';
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<Book[]> {
     return this.http.get<BookRaw[]>(`${this.api}/books`)
@@ -61,7 +61,17 @@ export class BookStoreService {
     return this.http.post(
       `${this.api}/book`,
       book,
-      { responseType: 'text'}
+      { responseType: 'text' }
+    ).pipe(
+      catchError(this.errorHandler)
+    )
+  }
+
+  update(book: Book): Observable<any> {
+    return this.http.put(
+      `${this.api}/book/${book.isbn}`, //url
+      book, //body
+      { responseType: 'text' } //options
     ).pipe(
       catchError(this.errorHandler)
     )
